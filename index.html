@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us">
+​
+
+<head>
+  <meta charset="UTF-8">
+  <title>Max's Psychic Game</title>
+</head>
+​
+
+<body>
+  ​
+  <div>
+    <p id="directions-text">Press any letter key to see if you're a psychic! Try to guess the letter I'm thinking of</p>
+    <p id="userchoice-text"></p>
+    <p id="past-guesses-text"></p>
+    <p id="wins-text"></p>
+    <p id="losses-text"></p>
+    <p id="chances-text"></p>
+  </div>
+  ​
+  <script type="text/javascript">
+    var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    var wins = 0;
+    var losses = 0;
+    var chances = 9
+
+    function reset(){
+      chances = 9
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+      var pastGuesses = [""]
+      console.log(pastGuesses[0])
+    }
+    reset()
+
+    function updateDisplay(){
+
+          document.querySelector("#wins-text").innerHTML = "wins" + wins;
+          document.querySelector("#losses-text").innerHTML = losses;
+          for(l=0; l<pastGuesses.length; l++){
+            document.querySelector("#past-guesses-text").innerHTML = "Previous Guesses: " + pastGuesses[i];
+          };
+          document.querySelector("#chances-text").innerHTML = "Attempts Remaining: " + chances;
+        }
+    
+    document.onkeyup = function (event) {
+
+        var userGuess = event.key;
+        document.querySelector("#userchoice-text").innerHTML = "Your choice: " + userGuess         
+
+        if (computerChoices.includes(userGuess)) {
+          console.log("It works")
+          console.log(computerGuess)
+
+
+          if (userGuess == computerGuess) {
+           alert("You won");
+           wins++
+           updateDisplay()
+           reset()
+          }
+
+          else{
+            chances--
+            pastGuesses.push(userGuess)
+            updateDisplay()
+            console.log("Close")
+
+             if(chances===0){
+              alert("You failed loser")
+              losses++
+              updateDisplay()
+              reset()
+              
+            }
+            }
+        }
+   
+    };
+  </script>
+  ​
+</body>
+​
+
+</html>
