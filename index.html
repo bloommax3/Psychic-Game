@@ -18,6 +18,7 @@
     <p id="wins-text"></p>
     <p id="losses-text"></p>
     <p id="chances-text"></p>
+    <P class = img></P>
   </div>
   ​
   <script type="text/javascript">
@@ -34,7 +35,6 @@
       chances = 9
       computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
       pastGuesses = []
-      console.log(pastGuesses[0])
     }
     reset()
 
@@ -52,14 +52,14 @@
 
         var userGuess = event.key;
         document.querySelector("#userchoice-text").innerHTML = "Your choice: " + userGuess         
+        pastGuesses.push(userGuess)
 
         if (computerChoices.includes(userGuess)) {
-          console.log("It works")
           console.log(computerGuess)
 
 
           if (userGuess == computerGuess) {
-           alert("You won");
+           alert("You Have Openned Your Third Eye");
            wins++
            updateDisplay()
            computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
@@ -68,12 +68,10 @@
 
           else{
             chances--
-            pastGuesses.push(userGuess)
             updateDisplay()
-            console.log("Close")
 
              if(chances===0){
-              alert("You failed loser")
+              alert("You Are Not a Psychic")
               losses++
               updateDisplay()
               computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
