@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Max's Psychic Game</title>
+
 </head>
 ​
 
@@ -20,25 +21,29 @@
   </div>
   ​
   <script type="text/javascript">
+  //define variables
     var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
     var wins = 0;
     var losses = 0;
-    var chances = 9
+    var chances = 9;
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    var pastGuesses = []
 
+    //create a function to start a new game.
     function reset(){
       chances = 9
-      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-      var pastGuesses = [""]
+      computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+      pastGuesses = []
       console.log(pastGuesses[0])
     }
     reset()
 
     function updateDisplay(){
 
-          document.querySelector("#wins-text").innerHTML = "wins" + wins;
-          document.querySelector("#losses-text").innerHTML = losses;
+          document.querySelector("#wins-text").innerHTML = "wins: " + wins;
+          document.querySelector("#losses-text").innerHTML = "losses: " + losses;
           for(l=0; l<pastGuesses.length; l++){
-            document.querySelector("#past-guesses-text").innerHTML = "Previous Guesses: " + pastGuesses[i];
+            document.querySelector("#past-guesses-text").innerHTML = "Previous Guesses: " + pastGuesses[l];
           };
           document.querySelector("#chances-text").innerHTML = "Attempts Remaining: " + chances;
         }
@@ -57,6 +62,7 @@
            alert("You won");
            wins++
            updateDisplay()
+           computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
            reset()
           }
 
@@ -70,6 +76,7 @@
               alert("You failed loser")
               losses++
               updateDisplay()
+              computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
               reset()
               
             }
